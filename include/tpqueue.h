@@ -10,22 +10,22 @@ class TPQueue {
   Node* next;
   explicit Node(const T& value) : data(value), next(nullptr) {
   }
- };
- Node* head;
- Node* tail;
+  };
+  Node* head;
+  Node* tail;
 
  public:
- TPQueue() : head(nullptr), tail(nullptr) {
- }
- ~TPQueue() {
+  TPQueue() : head(nullptr), tail(nullptr) {
+  }
+  ~TPQueue() {
    while (head != nullptr) {
       Node* temp = head;
       head = head->next;
       delete temp;
+   }
   }
- }
 void push(const T& item) {
-   Node* newNode = new Node(item);
+  Node* newNode = new Node(item);
     if (head == nullptr || item.prior > head->data.prior) {
       newNode->next = head;
       head = newNode;
@@ -34,17 +34,17 @@ void push(const T& item) {
       }
       return;
     }
-   Node* current = head;
-   while (current->next != nullptr &&
+    Node* current = head;
+    while (current->next != nullptr &&
      current->next->data.prior >= item.prior) {
      current = current->next;
-   }
-   newNode->next = current->next;
-   current->next = newNode;
-   if (newNode->next == nullptr) {
+    }
+    newNode->next = current->next;
+    current->next = newNode;
+    if (newNode->next == nullptr) {
      tail = newNode;
-   }
- }
+    }
+  }
 T pop() {
   if (head == nullptr) {
      throw std::underflow_error("Queue is empty");
@@ -52,14 +52,14 @@ T pop() {
   Node* temp = head;
   T result = head->data;
   head = head->next;
-   if (head == nullptr) {
+    if (head == nullptr) {
      tail = nullptr;
-   }
-   delete temp;
-   return result;
+    }
+    delete temp;
+    return result;
 }
 bool isEmpty() const {
-   return head == nullptr;
+    return head == nullptr;
 }
 };
 
