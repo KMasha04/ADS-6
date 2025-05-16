@@ -18,11 +18,11 @@ class TPQueue {
   TPQueue() : head(nullptr), tail(nullptr) {
   }
   ~TPQueue() {
-   while (head != nullptr) {
+    while (head != nullptr) {
       Node* temp = head;
       head = head->next;
       delete temp;
-   }
+    }
   }
 void push(const T& item) {
   Node* newNode = new Node(item);
